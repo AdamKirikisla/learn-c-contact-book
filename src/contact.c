@@ -20,3 +20,20 @@ Contact *create_contacts(void)
 
     return contacts;
 }
+// ** because contacts already has one * in main (Contact *), and we need
+// its address to change where it points after realloc
+void add_contact(Contact **contacts, int *count, const char *name, const char *phone)
+{
+    Contact *temp = realloc(*contacts, (*count + 1) * sizeof(Contact));
+    if (temp == NULL)
+    {
+        printf("Memory allocation failed!\n");
+        return;
+    }
+    *contacts = temp;
+    temp = NULL;
+
+    strcpy((*contacts)[*count].name, name);
+    strcpy((*contacts)[*count].phone, phone);
+    (*count)++;
+}

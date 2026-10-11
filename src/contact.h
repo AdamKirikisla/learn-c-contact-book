@@ -8,5 +8,6 @@ typedef struct
 } Contact;
 
 Contact *create_contacts(void);
+void add_contact(Contact **contacts, int *count, const char *name, const char *phone);
 
 #endif

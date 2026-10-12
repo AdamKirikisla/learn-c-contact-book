@@ -38,6 +38,35 @@ void add_contact(Contact **contacts, int *count, const char *name, const char *p
     (*count)++;
 }
 
+void remove_contact(Contact **contacts, int *count, char *person)
+{
+    int index = -1;
+    for (int i = 0; i < *count; i++)
+    {
+        if (strcmp(person, (*contacts)[i].name) == 0)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+    {
+        printf("Contact not found.\n");
+        return;
+    }
+
+    // Shift down
+    for (int i = index; i < *count - 1; i++)
+        (*contacts)[i] = (*contacts)[i + 1]; // put what's in slot 2 into slot 1
+
+    (*count)--;
+    printf("%s removed from contacts", person);
+
+    // still have unused slots
+    // No need for a realloc since add_contact calls realloc with count + 1 slots, which shrinks the array to fit and frees all the unused slots.
+}
+
 void view_contacts(Contact *contacts, int count)
 {
     for (int i = 0; i < count; i++)

@@ -4,7 +4,7 @@
 
 int main()
 {
-
+    char person[50];
     int controller = 0;
 
     int count = 2;
@@ -17,6 +17,7 @@ int main()
     {
         printf("\nContacts\n");
         printf("\n1) Add new contact\n");
+        printf("\n2) Remove a contact\n");
         printf("\n4) View all contacts\n");
         printf("\n5) Quit\n");
         printf("\nEnter a command: ");
@@ -28,8 +29,15 @@ int main()
             add_contact(&contacts, &count, "Sam", "514-000-0000");
             break;
 
+        case 2:
+            printf("Who would you like to remove from your contacts: ");
+            scanf("%49s", person); // manual limit
+            remove_contact(&contacts, &count, person);
+            break;
+
         case 4:
             view_contacts(contacts, count);
+            break;
 
         case 5:
             break;

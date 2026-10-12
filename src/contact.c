@@ -37,3 +37,9 @@ void add_contact(Contact **contacts, int *count, const char *name, const char *p
     strcpy((*contacts)[*count].phone, phone);
     (*count)++;
 }
+
+void view_contacts(Contact *contacts, int count)
+{
+    for (int i = 0; i < count; i++)
+        printf("%s, %s\n", contacts[i].name, contacts[i].phone);
+}

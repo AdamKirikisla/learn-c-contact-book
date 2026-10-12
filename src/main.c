@@ -17,7 +17,7 @@ int main()
     {
         printf("\nContacts\n");
         printf("\n1) Add new contact\n");
-        printf("\n2) View all contacts\n");
+        printf("\n4) View all contacts\n");
         printf("\n5) Quit\n");
         printf("\nEnter a command: ");
         scanf("%d", &controller);
@@ -28,10 +28,8 @@ int main()
             add_contact(&contacts, &count, "Sam", "514-000-0000");
             break;
 
-        case 2:
-            for (int i = 0; i < count; i++)
-                printf("%s, %s\n", contacts[i].name, contacts[i].phone);
-            break;
+        case 4:
+            view_contacts(contacts, count);
 
         case 5:
             break;

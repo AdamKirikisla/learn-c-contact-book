@@ -10,6 +10,7 @@ typedef struct
 Contact *create_contacts(void);
 void add_contact(Contact **contacts, int *count, const char *name, const char *phone);
 void remove_contact(Contact **contacts, int *count, char *person);
-void view_contacts(Contact *contacts, int count);
+void view_contacts(Contact *contacts, int count, char *person);
+void view_all_contacts(Contact *contacts, int count);
 
 #endif

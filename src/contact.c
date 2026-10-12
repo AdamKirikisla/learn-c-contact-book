@@ -61,13 +61,27 @@ void remove_contact(Contact **contacts, int *count, char *person)
         (*contacts)[i] = (*contacts)[i + 1]; // put what's in slot 2 into slot 1
 
     (*count)--;
-    printf("%s removed from contacts", person);
+    printf("%s removed from contacts\n", person);
 
     // still have unused slots
     // No need for a realloc since add_contact calls realloc with count + 1 slots, which shrinks the array to fit and frees all the unused slots.
 }
 
-void view_contacts(Contact *contacts, int count)
+void view_contacts(Contact *contacts, int count, char *person)
+{
+    for (int i = 0; i < count; i++)
+    {
+        if (strcmp(person, contacts[i].name) == 0)
+        {
+            printf("%s, %s\n", contacts[i].name, contacts[i].phone);
+            return;
+        }
+    }
+
+    printf("Contact not found.\n");
+}
+
+void view_all_contacts(Contact *contacts, int count)
 {
     for (int i = 0; i < count; i++)
         printf("%s, %s\n", contacts[i].name, contacts[i].phone);

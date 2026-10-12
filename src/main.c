@@ -19,6 +19,7 @@ int main()
         printf("\nContacts\n");
         printf("\n1) Add new contact\n");
         printf("\n2) Remove a contact\n");
+        printf("\n3) View one contact\n");
         printf("\n4) View all contacts\n");
         printf("\n5) Quit\n");
         printf("\nEnter a command: ");
@@ -40,8 +41,14 @@ int main()
             remove_contact(&contacts, &count, person);
             break;
 
+        case 3:
+            printf("Enter the contact's name: ");
+            scanf(" %49[^\n]", person);
+            view_contacts(contacts, count, person);
+            break;
+
         case 4:
-            view_contacts(contacts, count);
+            view_all_contacts(contacts, count);
             break;
 
         case 5:

@@ -5,6 +5,7 @@
 int main()
 {
     char person[50];
+    char number[15];
     int controller = 0;
 
     int count = 2;
@@ -26,12 +27,16 @@ int main()
         switch (controller)
         {
         case 1:
-            add_contact(&contacts, &count, "Sam", "514-000-0000");
+            printf("Enter the contact's name: ");
+            scanf(" %49[^\n]", person); // 49 manual limit and you can add spacing
+            printf("Enter the contact's number: ");
+            scanf(" %14[^\n]", number);
+            add_contact(&contacts, &count, person, number);
             break;
 
         case 2:
             printf("Who would you like to remove from your contacts: ");
-            scanf("%49s", person); // manual limit
+            scanf(" %49[^\n]", person);
             remove_contact(&contacts, &count, person);
             break;
 

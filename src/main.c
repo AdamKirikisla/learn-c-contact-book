@@ -16,14 +16,39 @@ int main()
 
     do
     {
-        printf("\nContacts\n");
-        printf("\n1) Add new contact\n");
-        printf("\n2) Remove a contact\n");
-        printf("\n3) View one contact\n");
-        printf("\n4) View all contacts\n");
-        printf("\n5) Quit\n");
-        printf("\nEnter a command: ");
-        scanf("%d", &controller);
+        printf("\n==============================\n");
+        printf("         CONTACT BOOK\n");
+        printf("==============================\n");
+        printf("  1) Add new contact\n");
+        printf("  2) Remove a contact\n");
+        printf("  3) View one contact\n");
+        printf("  4) View all contacts\n");
+        printf("  5) Quit\n");
+        printf("------------------------------\n");
+        printf("Enter a command: ");
+
+        // scanf returns how many values it read: 1 = got a number, 0 = not a number.
+        // So != 1 means the user typed something that isn't a number (like "abc").
+        if (scanf("%d", &controller) != 1)
+        {
+            // controller was never set, so reset it to 0 (not a menu option)
+            // -> the switch goes to default and prints "Wrong input"
+            controller = 0;
+
+            // The bad text ("abc") is still waiting in the input. If we leave it,
+            // the next scanf fails on it again, forever.
+            // ch holds one character at a time. It is an int because getchar()
+            // can also return EOF (end of input, usually -1), which doesn't fit in a char.
+            int ch;
+
+            // Each pass: getchar() takes one character, stores it in ch, and we check it.
+            // - not Enter ('\n') and not EOF -> condition true, go again
+            // - Enter or EOF -> condition false, stop
+            // The body is empty (;) because the reading happens in the condition.
+            // Example: input "ab" + Enter -> takes a, b, then Enter, and the input is empty.
+            while ((ch = getchar()) != '\n' && ch != EOF)
+                ;
+        }
 
         switch (controller)
         {
@@ -44,7 +69,7 @@ int main()
         case 3:
             printf("Enter the contact's name: ");
             scanf(" %49[^\n]", person);
-            view_contacts(contacts, count, person);
+            view_contact(contacts, count, person);
             break;
 
         case 4:
